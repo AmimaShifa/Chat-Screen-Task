@@ -1,5 +1,5 @@
 import React  from "react";
-
+import Screen from "./Screen";
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -11,7 +11,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
+//import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 const Chats=()=>{
     const Search = styled('div')(({ theme }) => ({
@@ -85,21 +85,21 @@ const Chats=()=>{
                   component="div"
                   sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                 >
-                  MUI
+                  To:
                 </Typography>
                 <Search>
                   <SearchIconWrapper>
                     
                   </SearchIconWrapper>
                   <StyledInputBase
-                    placeholder="To :"
+                    placeholder=""
                     inputProps={{ 'aria-label': 'search' }}
                   />
                 </Search>
               </Toolbar>
             </AppBar>
           </Box>
-      
+      <Screen />
           </CardContent>
           <CardActions>
            
