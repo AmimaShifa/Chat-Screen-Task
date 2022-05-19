@@ -1,6 +1,7 @@
-import React  from "react";
-import Screen from "./Screen";
-
+import React , { useState } from "react";
+//import Screen from "./Screen";
+import "./Chats.css";
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -13,6 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 //import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
+//import ArrowUpward from "@mui/icons-material/ArrowUpward";
+
+
 const Chats=()=>{
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -28,16 +32,48 @@ const Chats=()=>{
           width: 'auto',
         },
       }));
+      function Random() {
+       var result = Math.random().toString(36).substring(2,7);
+        return result;
+    }
+    function generatemessage(e){
+      e.preventDefault();
+      count=0;
+      function insertAfter(newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+      }
+      function insertBefore(newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode);
+    }
+    
+     
+      const para = document.createElement("p");
+      para.className="from-me";
+      para.id="sendmsg"
+var input = document.getElementById("userInput").value;
+para.innerText = input;
+var empty= document.getElementById("empty");
+if(count===0){
+  insertAfter(para,empty);
+  var count=1;   
+}
+else{
+insertAfter(para,reply);
+count=1;}
+
+
+
+const reply = document.createElement("p");
+reply.className="from-them";
+reply.id="recvmsg"
+reply.innerHTML=Random();
+
+insertAfter(reply,para);
+empty=document.getElementById("recvmsg");
+//document.getElementById("empty2").appendChild(reply);
+document.getElementById("formmsg").reset();
+    }
       
-      const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }));
       
       const StyledInputBase = styled(InputBase)(({ theme }) => ({
         color: 'inherit',
@@ -77,20 +113,17 @@ const Chats=()=>{
                   aria-label="open drawer"
                   sx={{ mr: 2 }}
                 >
-                  
-                </IconButton>
+                  </IconButton>
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
-                  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                  sx={{ flexGrow: 0, display: { xs: 'none', sm: 'block' } }}
                 >
                   To:
                 </Typography>
                 <Search>
-                  <SearchIconWrapper>
-                    
-                  </SearchIconWrapper>
+                  
                   <StyledInputBase
                     placeholder=""
                     inputProps={{ 'aria-label': 'search' }}
@@ -99,7 +132,21 @@ const Chats=()=>{
               </Toolbar>
             </AppBar>
           </Box>
-      <Screen />
+          <br />
+          
+     <div  class="imessage">
+     <div id ="empty"></div>
+    
+		<form class="chat-input bottom" onsubmit="return false;  " id="formmsg">
+			<input type="text" autocomplete="on" placeholder="Type a message" id="userInput" />
+		<button className="arrow" onClick={generatemessage}>
+    
+    <bold className="arrow">{">"}</bold>
+    </button>
+		</form>
+    
+     </div>
+     
           </CardContent>
           <CardActions>
            
@@ -108,6 +155,7 @@ const Chats=()=>{
       ); return(
 <div >
     <div className="nav-bar"> 
+    New Messages 
              </div>
              <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">{card}</Card>
